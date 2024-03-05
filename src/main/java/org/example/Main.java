@@ -6,21 +6,37 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Calculator calculator = new Calculator();
-        calculator.calculate(9587, 3);
-        Formatting formatting = new Formatting();
-        System.out.println(calculator.getSpaces());
-        System.out.println(calculator.getResult());
-        formatting.formatAndPrint(calculator.getDividend(), calculator.getDivisor(),  calculator.getResult(), calculator.getQuotient(), calculator.getSpaces());
+        Scanner scanner = new Scanner(System.in);
+        while (true){
 
-        System.out.println();
-        for (Integer item : calculator.getResult()) {
-            System.out.println(item);
-        }
+            int dividend;
+            do {
+                System.out.print("Enter the dividend: ");
+                dividend = scanner.nextInt();
+                if(dividend < 0) {
+                    System.out.println("Value should be greater than 0.");
+                }
+            } while (dividend < 0);
 
-        System.out.println("----");
-        for (Integer item : calculator.getQuotient()) {
-            System.out.println(item);
+
+            int divisor;
+            do {
+                System.out.print("Enter the divisor: ");
+                divisor = scanner.nextInt();
+                if(divisor < 0) {
+                    System.out.println("Value should be greater than 0.");
+                }
+            } while (divisor < 0);
+
+            Calculator calculator = new Calculator(dividend, divisor);
+            calculator.calculate();
+
+            Formatting formatting = new Formatting(calculator.getDividend(), calculator.getDivisor(),
+                    calculator.getQuotientInIntFormat(), calculator.getResult(), calculator.getSpaces());
+
+            System.out.print("\n");
+            formatting.formatAndPrint();
+            System.out.print("\n".repeat(2));
         }
     }
 

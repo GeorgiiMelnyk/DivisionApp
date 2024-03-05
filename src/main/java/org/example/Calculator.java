@@ -11,10 +11,14 @@ public class Calculator {
     private List<Integer> quotient = new ArrayList<>();
     private List<Integer> spaces = new ArrayList<>();
 
-    public void calculate(int dividend, int divisor){
-
+    public Calculator(int dividend, int divisor){
         this.dividend = dividend;
         this.divisor = divisor;
+        initDivideDigits();
+    }
+
+    public void calculate(){
+
         result.clear();
         quotient.clear();
         spaces.clear();
@@ -22,42 +26,38 @@ public class Calculator {
 
         int currentSpace = 0;
         int curDividend = dividendDigits[0];
-        int curDivivsior = 0;
+        int curDivisor = 0;
 
         for(int i = 0; i < dividendDigits.length; i++){
 
             if(divisor <= curDividend){
-                curDivivsior = findGreatestCommonDivisor(curDividend);
+                curDivisor = findGreatestCommonDivisor(curDividend);
 
                 int dividendLength = String.valueOf(curDividend).length();
-                int differenceLength = String.valueOf(curDividend - curDivivsior).length();
-                System.out.println(dividendLength);
-                System.out.println(differenceLength);
-                if(curDividend - curDivivsior != 0){
+                int differenceLength = String.valueOf(curDividend - curDivisor).length();
+
+                if(curDividend - curDivisor != 0){
                     currentSpace += dividendLength - differenceLength;
-                    System.out.println("*");
-                            //(String.valueOf(curDividend).length()) - (String.valueOf(curDividend - curDivivsior).length());
                 } else {
-                    currentSpace += String.valueOf(curDivivsior).length();
-                    System.out.println("+");
+                    currentSpace += String.valueOf(curDivisor).length();
                 }
 
                 result.add(curDividend);
-                result.add(curDivivsior);
+                result.add(curDivisor);
                 spaces.add(currentSpace);
                 spaces.add(currentSpace);
-                curDividend = curDividend - curDivivsior;
+                curDividend = curDividend - curDivisor;
 
 
             } else if (!quotient.isEmpty()){
                 quotient.add(0);
-                currentSpace++;
             }
 
             if (i < dividendDigits.length - 1) {
                 curDividend = curDividend * 10 + dividendDigits[i + 1];
             } else {
-                currentSpace += String.valueOf(curDivivsior).length() - String.valueOf(curDividend).length();
+                //currentSpace += String.valueOf(curDivisor).length() - String.valueOf(curDividend).length();
+                currentSpace += checkZeroCaseAndGetNumberOfSpaces(curDividend, curDivisor);
                 result.add(curDividend);
                 spaces.add(currentSpace);
             }
@@ -66,7 +66,6 @@ public class Calculator {
         }
 
         result.remove(0);
-        spaces.remove(0);
     }
 
 
@@ -94,12 +93,24 @@ public class Calculator {
          }
     }
 
-    public List<Integer> getResult() {
+    private int checkZeroCaseAndGetNumberOfSpaces(int curDividend, int curDivisor){
+        int result = String.valueOf(curDivisor).length() - String.valueOf(curDividend).length();;
+        if(curDividend == 0 && quotient.get(quotient.size() - 1) == 0){
+            result--;
+        }
         return result;
     }
+    public int getQuotientInIntFormat() {
+        StringBuilder quotient = new StringBuilder();
+        for(int i : this.quotient){
+            quotient.append(i);
+        }
 
-    public List<Integer> getQuotient() {
-        return quotient;
+        return Integer.parseInt(quotient.toString());
+    }
+
+    public List<Integer> getResult() {
+        return result;
     }
 
     public List<Integer> getSpaces() {
