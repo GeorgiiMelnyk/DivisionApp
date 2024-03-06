@@ -42,10 +42,11 @@ public class Calculator {
                     currentSpace += String.valueOf(curDivisor).length();
                 }
 
+                spaces.add(currentSpace);
+                spaces.add(currentSpace);
                 result.add(curDividend);
                 result.add(curDivisor);
-                spaces.add(currentSpace);
-                spaces.add(currentSpace);
+                compareDividendAndDivisor(curDividend, curDivisor);
                 curDividend = curDividend - curDivisor;
 
 
@@ -56,19 +57,26 @@ public class Calculator {
             if (i < dividendDigits.length - 1) {
                 curDividend = curDividend * 10 + dividendDigits[i + 1];
             } else {
-                //currentSpace += String.valueOf(curDivisor).length() - String.valueOf(curDividend).length();
-                currentSpace += checkZeroCaseAndGetNumberOfSpaces(curDividend, curDivisor);
+                currentSpace += String.valueOf(curDivisor).length() - String.valueOf(curDividend).length();
                 result.add(curDividend);
                 spaces.add(currentSpace);
+                checkZeroCaseAndChangeSpace(curDividend);
             }
 
 
         }
 
-        result.remove(0);
     }
 
 
+    private void initDivideDigits(){
+        String numAsString = String.valueOf(dividend);
+        dividendDigits = new int[numAsString.length()];
+
+        for(int i = 0; i < numAsString.length(); i++){
+            dividendDigits[i] = Character.getNumericValue(numAsString.charAt(i));
+        }
+    }
     private int findGreatestCommonDivisor(int num1){
 
         int num2 = divisor;
@@ -84,21 +92,21 @@ public class Calculator {
         return result;
     }
 
-    private void initDivideDigits(){
-        String numAsString = String.valueOf(dividend);
-        dividendDigits = new int[numAsString.length()];
+    private void checkZeroCaseAndChangeSpace(int curDividend){
 
-         for(int i = 0; i < numAsString.length(); i++){
-             dividendDigits[i] = Character.getNumericValue(numAsString.charAt(i));
-         }
+        if(curDividend == 0 && quotient.get(quotient.size() - 1) == 0){
+            spaces.set(spaces.size() - 3, spaces.get(spaces.size() - 3) - 1);
+        }
     }
 
-    private int checkZeroCaseAndGetNumberOfSpaces(int curDividend, int curDivisor){
-        int result = String.valueOf(curDivisor).length() - String.valueOf(curDividend).length();;
-        if(curDividend == 0 && quotient.get(quotient.size() - 1) == 0){
-            result--;
+    private void compareDividendAndDivisor(int curDividend, int curDivisor){
+        int curDividendLength = String.valueOf(curDividend).length();
+        int curDivisorLength = String.valueOf(curDivisor).length();
+
+        if(curDividendLength > curDivisorLength && spaces.size() > 2){
+            int difference = curDividendLength - curDivisorLength;
+            spaces.set(spaces.size() - 3, spaces.get(spaces.size() - 3) + difference);
         }
-        return result;
     }
     public int getQuotientInIntFormat() {
         StringBuilder quotient = new StringBuilder();

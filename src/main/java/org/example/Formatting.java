@@ -22,43 +22,33 @@ public class Formatting {
         System.out.println("_" + dividend + "|" + divisor);
 
         int dividendLength = String.valueOf(dividend).length();
-        int firstDivisorLength = String.valueOf(result.get(0)).length();
+        int firstDividendLength = String.valueOf(result.get(0)).length();
+        int firstDivisorLength = String.valueOf(result.get(1)).length();
         int quotientLength = String.valueOf(quotient).length();
-        String space = " ".repeat(dividendLength - firstDivisorLength);
+        int difference = firstDividendLength - firstDivisorLength;
+        String space = " ".repeat(dividendLength - firstDivisorLength - difference);
 
-        System.out.println(" " + result.get(0) + space + "|" + "-".repeat(quotientLength));
+        System.out.println(" " + " ".repeat(difference) + result.get(1) + space + "|" + "-".repeat(quotientLength));
 
-        System.out.print(" " + "-".repeat(firstDivisorLength) +
-                " ".repeat(dividendLength - firstDivisorLength) + "|" + quotient);
+        System.out.print(" " + "-".repeat(firstDividendLength) +
+                " ".repeat(dividendLength - firstDivisorLength - difference) + "|" + quotient);
 
         System.out.print("\n");
 
-        for(int i = 1; i < result.size(); i++){
-            if(i != result.size() - 1){
-                if(i % 2 == 1){
-                    System.out.println(" ".repeat(spaces.get(i - 1)) + "_" + result.get(i));
-                } else {
-                    System.out.println(" " + " ".repeat(spaces.get(i - 1)) + result.get(i));
-                    System.out.println(" " + " ".repeat(spaces.get(i - 1)) +
-                            "-".repeat(String.valueOf(result.get(i)).length()));
-                }
-            } else {
-                System.out.println(" " + " ".repeat(spaces.get(i - 1)) + result.get(i));
-            }
-        }
-/*        result.remove(0);
-        for(int i = 0; i < result.size(); i++){
+        for(int i = 2; i < result.size(); i++){
             if(i != result.size() - 1){
                 if(i % 2 == 0){
-                    System.out.println(" ".repeat(spaces.get(i)) + "_" + result.get(i));
-                    //System.out.println(" ".repeat(spaces.get(i) - 1) + "_" + result.get(i));
+                    System.out.println(" ".repeat(spaces.get(i - 2)) + "_" + result.get(i));
                 } else {
-                    System.out.println(" " + " ".repeat(spaces.get(i)) + result.get(i));
-                    System.out.println(" " + " ".repeat(spaces.get(i)) + "-".repeat(String.valueOf(result.get(i)).length()));
+                    System.out.println(" " + " ".repeat(spaces.get(i - 2)) + result.get(i));
+                    System.out.println(" " + " ".repeat(spaces.get(i - 3)) +
+                            "-".repeat(String.valueOf(result.get(i - 1)).length()));
                 }
             } else {
-                System.out.println(" " + " ".repeat(spaces.get(i)) + result.get(i));
+                System.out.println(" " + " ".repeat(spaces.get(i - 2)) + result.get(i));
             }
-        }*/
+        }
+
     }
+
 }
