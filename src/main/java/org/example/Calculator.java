@@ -15,14 +15,17 @@ public class Calculator {
         this.dividend = dividend;
         this.divisor = divisor;
         initDivideDigits();
+        result.clear();
+        quotient.clear();
+        spaces.clear();
     }
 
     public void calculate(){
 
-        result.clear();
+/*        result.clear();
         quotient.clear();
         spaces.clear();
-        initDivideDigits();
+        initDivideDigits();*/
 
         int currentSpace = 0;
         int curDividend = dividendDigits[0];
