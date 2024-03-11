@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
 
-    //calculate() Should set collection "result" by partial divisors and dividends
+    // all values were calculated using an online calculator
+    // calculate() Should set collection "result" by partial divisors and dividends
     @Test
     void calculateCase1WithSimpleNumbers(){
         int dividend = 245;
@@ -128,6 +129,92 @@ class CalculatorTest {
         calculator.calculate();
 
         assertEquals(calculator.getResult(), result);
+    }
+
+    // calculate() should also set collection spaces by number of spaces for each partial divisors and dividends(except first and second). The last two spaces are redundant
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase1(){
+        int dividend = 10000;
+        int divisor = 33;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(2, 3, 4);
+
+        assertEquals(calculator.getSpaces(), spaces);
+    }
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase2(){
+        int dividend = 9999;
+        int divisor = 27;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(0, 0, 3);
+
+        assertEquals(calculator.getSpaces(), spaces);
+    }
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase3(){
+        int dividend = 834753;
+        int divisor = 444;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(0, 0, 1, 1, 4);
+
+        assertEquals(calculator.getSpaces(), spaces);
+    }
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase4(){
+        int dividend = 10000;
+        int divisor = 10;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(1);
+
+        assertEquals(calculator.getSpaces(), spaces);
+    }
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase5(){
+        int dividend = 6600400;
+        int divisor = 34;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(0, 0, 1, 1, 3, 3, 3, 4, 4, 4, 5);
+
+        assertEquals(calculator.getSpaces(), spaces);
+    }
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase6(){
+        int dividend = 7;
+        int divisor = 3;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(0);
+
+        assertEquals(calculator.getSpaces(), spaces);
     }
 
 }
