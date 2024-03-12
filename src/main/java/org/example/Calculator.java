@@ -22,11 +22,6 @@ public class Calculator {
 
     public void calculate(){
 
-/*        result.clear();
-        quotient.clear();
-        spaces.clear();
-        initDivideDigits();*/
-
         int currentSpace = 0;
         int curDividend = dividendDigits[0];
         int curDivisor = 0;
