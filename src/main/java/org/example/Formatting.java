@@ -3,19 +3,18 @@ package org.example;
 import java.util.List;
 
 public class Formatting {
-
     private int dividend;
     private int divisor;
     private int quotient;
     private List<Integer> result;
     private List<Integer> spaces;
 
-    public Formatting(int dividend, int divisor, int quotient, List<Integer> result, List<Integer> spaces){
-        this.dividend = dividend;
-        this.divisor = divisor;
-        this.quotient = quotient;
-        this.result = result;
-        this.spaces = spaces;
+    public Formatting(Calculator calculator){
+        this.dividend = calculator.getDividend();
+        this.divisor = calculator.getDivisor();
+        this.quotient = calculator.getQuotientInIntFormat();
+        this.result = calculator.getResult();
+        this.spaces = calculator.getSpaces();
     }
 
     public void formatAndPrint(){

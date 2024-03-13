@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -9,30 +10,42 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         while (true){
 
-            int dividend;
+            int dividend = 0;
             do {
-                System.out.print("Enter the dividend: ");
-                dividend = scanner.nextInt();
-                if(dividend < 0) {
-                    System.out.println("Value should be greater than 0.");
+                try {
+                    System.out.print("Enter the dividend: ");
+                    dividend = scanner.nextInt();
+                    if(dividend <= 0) {
+                        System.out.println("Value should be greater than 0.");
+                    }
+                } catch (InputMismatchException e){
+                    System.out.println("Input is not a valid integer. Please try again.");
+                    scanner.next();
                 }
-            } while (dividend < 0);
+            } while (dividend <= 0);
 
 
-            int divisor;
+            int divisor = 0;
             do {
-                System.out.print("Enter the divisor: ");
-                divisor = scanner.nextInt();
-                if(divisor < 0) {
-                    System.out.println("Value should be greater than 0.");
+                try {
+                    System.out.print("Enter the divisor: ");
+                    divisor = scanner.nextInt();
+                    if(divisor <= 0) {
+                        System.out.println("Value should be greater than 0.");
+                    }
+                    if(divisor > dividend){
+                        System.out.println("Value should be less than or equal to dividend");
+                    }
+                }  catch (InputMismatchException e){
+                    System.out.println("Input is not a valid integer. Please try again.");
+                    scanner.next();
                 }
-            } while (divisor < 0);
+            } while (divisor <= 0 || divisor > dividend);
 
             Calculator calculator = new Calculator(dividend, divisor);
             calculator.calculate();
 
-            Formatting formatting = new Formatting(calculator.getDividend(), calculator.getDivisor(),
-                    calculator.getQuotientInIntFormat(), calculator.getResult(), calculator.getSpaces());
+            Formatting formatting = new Formatting(calculator);
 
             System.out.print("\n");
             formatting.formatAndPrint();
