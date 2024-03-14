@@ -32,12 +32,15 @@ public class Calculator {
                 curDivisor = findGreatestCommonDivisor(curDividend);
 
                 int dividendLength = String.valueOf(curDividend).length();
+                int divisorLength = String.valueOf(curDivisor).length();
                 int differenceLength = String.valueOf(curDividend - curDivisor).length();
 
                 if(curDividend - curDivisor != 0){
                     currentSpace += dividendLength - differenceLength;
+                } else if(i == dividendDigits.length - 1){
+                    currentSpace += dividendLength - divisorLength;
                 } else {
-                    currentSpace += String.valueOf(curDivisor).length();
+                    currentSpace += String.valueOf(curDividend).length();
                 }
 
                 spaces.add(currentSpace);
@@ -94,6 +97,13 @@ public class Calculator {
 
         if(curDividend == 0 && quotient.get(quotient.size() - 1) == 0){
             spaces.set(spaces.size() - 3, spaces.get(spaces.size() - 3) - 1);
+        } else if(curDividend == 0 && dividendDigits[dividendDigits.length - 1] == 0){
+
+            int curDividendLength = String.valueOf(curDividend).length();
+            int previousDividendLength = String.valueOf(result.get(result.size() - 3)).length();
+            int difference = previousDividendLength - curDividendLength;
+
+            spaces.set(spaces.size() - 3, spaces.get(spaces.size() - 3) + difference);
         }
     }
 

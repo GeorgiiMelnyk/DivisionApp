@@ -20,7 +20,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -32,7 +32,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -44,7 +44,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -56,7 +56,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -68,7 +68,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -80,7 +80,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -92,7 +92,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -104,7 +104,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -116,7 +116,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     @Test
@@ -128,7 +128,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
 
-        assertEquals(calculator.getResult(), result);
+        assertEquals(result, calculator.getResult());
     }
 
     // calculate() should also set collection spaces by number of spaces for each partial divisors and dividends(except first and second). The last two spaces are redundant
@@ -144,7 +144,7 @@ class CalculatorTest {
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
         List<Integer> spaces = Arrays.asList(2, 3, 4);
 
-        assertEquals(calculator.getSpaces(), spaces);
+        assertEquals(spaces, calculator.getSpaces());
     }
 
     @Test
@@ -158,7 +158,7 @@ class CalculatorTest {
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
         List<Integer> spaces = Arrays.asList(0, 0, 3);
 
-        assertEquals(calculator.getSpaces(), spaces);
+        assertEquals(spaces, calculator.getSpaces());
     }
 
     @Test
@@ -172,7 +172,7 @@ class CalculatorTest {
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
         List<Integer> spaces = Arrays.asList(0, 0, 1, 1, 4);
 
-        assertEquals(calculator.getSpaces(), spaces);
+        assertEquals(spaces, calculator.getSpaces());
     }
 
     @Test
@@ -186,7 +186,7 @@ class CalculatorTest {
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
         List<Integer> spaces = Arrays.asList(1);
 
-        assertEquals(calculator.getSpaces(), spaces);
+        assertEquals(spaces, calculator.getSpaces());
     }
 
     @Test
@@ -200,7 +200,7 @@ class CalculatorTest {
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
         List<Integer> spaces = Arrays.asList(0, 0, 1, 1, 3, 3, 3, 4, 4, 4, 5);
 
-        assertEquals(calculator.getSpaces(), spaces);
+        assertEquals(spaces, calculator.getSpaces());
     }
 
     @Test
@@ -214,7 +214,21 @@ class CalculatorTest {
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
         List<Integer> spaces = Arrays.asList(0);
 
-        assertEquals(calculator.getSpaces(), spaces);
+        assertEquals(spaces, calculator.getSpaces());
+    }
+
+    @Test
+    void calculateCheckingTheCorrectnessOfSpaceCountingCase7(){
+        int dividend = 800600;
+        int divisor = 50;
+
+        Calculator calculator = new Calculator(dividend, divisor);
+        calculator.calculate();
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
+        calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
+        List<Integer> spaces = Arrays.asList(0, 0, 3, 3, 3, 3, 5);
+
+        assertEquals(spaces, calculator.getSpaces());
     }
 
 }

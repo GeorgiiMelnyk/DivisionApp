@@ -17,8 +17,10 @@ public class Formatting {
         this.spaces = calculator.getSpaces();
     }
 
+
     public void formatAndPrint(){
-        System.out.println("_" + dividend + "|" + divisor);
+        StringBuilder resultString = new StringBuilder();
+        resultString.append("_").append(dividend).append("|").append(divisor).append("\n");
 
         int dividendLength = String.valueOf(dividend).length();
         int firstDividendLength = String.valueOf(result.get(0)).length();
@@ -27,27 +29,27 @@ public class Formatting {
         int difference = firstDividendLength - firstDivisorLength;
         String space = " ".repeat(dividendLength - firstDivisorLength - difference);
 
-        System.out.println(" " + " ".repeat(difference) + result.get(1) + space + "|" + "-".repeat(quotientLength));
+        resultString.append(" ").append(" ".repeat(difference)).append(result.get(1)).append(space).append("|").append("-".repeat(quotientLength)).append("\n");
 
-        System.out.print(" " + "-".repeat(firstDividendLength) +
-                " ".repeat(dividendLength - firstDivisorLength - difference) + "|" + quotient);
+        resultString.append(" ").append("-".repeat(firstDividendLength)).append(" ".repeat(dividendLength - firstDivisorLength - difference))
+                .append("|").append(quotient).append("\n");
 
-        System.out.print("\n");
 
         for(int i = 2; i < result.size(); i++){
             if(i != result.size() - 1){
                 if(i % 2 == 0){
-                    System.out.println(" ".repeat(spaces.get(i - 2)) + "_" + result.get(i));
+                    resultString.append(" ".repeat(spaces.get(i - 2))).append("_").append(result.get(i)).append("\n");
                 } else {
-                    System.out.println(" " + " ".repeat(spaces.get(i - 2)) + result.get(i));
-                    System.out.println(" " + " ".repeat(spaces.get(i - 3)) +
-                            "-".repeat(String.valueOf(result.get(i - 1)).length()));
+                    resultString.append(" ").append(" ".repeat(spaces.get(i - 2))).append(result.get(i)).append("\n");
+                    resultString.append(" ").append(" ".repeat(spaces.get(i - 3))).append("-".repeat(String.valueOf(result.get(i - 1)).length())).append("\n");
                 }
             } else {
-                System.out.println(" " + " ".repeat(spaces.get(i - 2)) + result.get(i));
+                resultString.append(" ").append(" ".repeat(spaces.get(i - 2))).append(result.get(i));
             }
         }
 
+        String finalResult = resultString.toString();
+        System.out.println(finalResult);
     }
 
 }
