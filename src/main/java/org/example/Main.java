@@ -5,42 +5,21 @@ import java.util.Scanner;
 
 public class Main {
 
+
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        DataReader dataReader = new DataReader();
         while (true){
 
-            int dividend = 0;
-            do {
-                try {
-                    System.out.print("Enter the dividend: ");
-                    dividend = scanner.nextInt();
-                    if(dividend <= 0) {
-                        System.out.println("Value should be greater than 0.");
-                    }
-                } catch (InputMismatchException e){
-                    System.out.println("Input is not a valid integer. Please try again.");
-                    scanner.next();
-                }
-            } while (dividend <= 0);
+            dataReader.enterTheValue(2147483647, "dividend", "");
+            //2147483647 is the maximum number for integer
 
+            int dividend = dataReader.getResult();
 
-            int divisor = 0;
-            do {
-                try {
-                    System.out.print("Enter the divisor: ");
-                    divisor = scanner.nextInt();
-                    if(divisor <= 0) {
-                        System.out.println("Value should be greater than 0.");
-                    }
-                    if(divisor > dividend){
-                        System.out.println("Value should be less than or equal to dividend");
-                    }
-                }  catch (InputMismatchException e){
-                    System.out.println("Input is not a valid integer. Please try again.");
-                    scanner.next();
-                }
-            } while (divisor <= 0 || divisor > dividend);
+            dataReader.enterTheValue(dividend, "divisor",
+                    "Value should be less than or equal to dividend.\n");
+            int divisor = dataReader.getResult();
+
 
             Calculator calculator = new Calculator(dividend, divisor);
             calculator.calculate();
@@ -48,7 +27,7 @@ public class Main {
             Formatting formatting = new Formatting(calculator);
 
             System.out.print("\n");
-            formatting.formatAndPrint();
+            formatting.print(formatting.format());
             System.out.print("\n".repeat(2));
         }
     }

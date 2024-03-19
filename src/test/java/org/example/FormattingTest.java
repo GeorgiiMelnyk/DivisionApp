@@ -11,8 +11,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintShortNumbersCase1(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 234;
         int divisor = 23;
@@ -20,9 +18,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_234|23\n" +
                                 " 23 |--\n" +
@@ -34,8 +31,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintShortNumbersCase2(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 9;
         int divisor = 2;
@@ -43,9 +38,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_9|2\n" +
                                 " 8|-\n" +
@@ -57,8 +51,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintShortNumbersCase3(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 1;
         int divisor = 1;
@@ -66,9 +58,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_1|1\n" +
                                 " 1|-\n" +
@@ -80,8 +71,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintShortNumbersCase4(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 55;
         int divisor = 3;
@@ -89,9 +78,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_55|3\n" +
                                 " 3 |--\n" +
@@ -105,8 +93,6 @@ class FormattingTest {
     }
     @Test
     void testFormatAndPrintLongNumbersCase1(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 999999999;
         int divisor = 4444444;
@@ -114,9 +100,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_999999999|4444444\n" +
                                 " 8888888  |---\n" +
@@ -134,8 +119,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintLongNumbersCase2(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 1111111111;
         int divisor = 987654321;
@@ -143,9 +126,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_1111111111|987654321\n" +
                                 "  987654321|-\n" +
@@ -157,8 +139,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintLongNumbersCase3(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 654000345;
         int divisor = 7;
@@ -166,9 +146,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_654000345|7\n" +
                                 " 63       |--------\n" +
@@ -198,8 +177,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintZeroNumbersCase1(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 10000;
         int divisor = 10;
@@ -207,9 +184,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_10000|10\n" +
                                 " 10   |----\n" +
@@ -221,8 +197,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndPrintZeroNumbersCase2(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 800600;
         int divisor = 50;
@@ -230,9 +204,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_800600|50\n" +
                                 " 50    |-----\n" +
@@ -253,8 +226,6 @@ class FormattingTest {
 
     @Test
     void testFormatAndDifferenceInLengthBetweenFirstDivisorAndFirstDividendCase(){
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         int dividend = 101345;
         int divisor = 99;
@@ -262,9 +233,8 @@ class FormattingTest {
         calculator.calculate();
 
         Formatting formatting = new Formatting(calculator);
-        formatting.formatAndPrint();
 
-        String printedOutput = outputStreamCaptor.toString().trim();
+        String printedOutput = formatting.format();
 
         String expectedOutput = "_101345|99\n" +
                                 "  99   |----\n" +

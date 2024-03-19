@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    private int dividend;
-    private int divisor;
+    private final int dividend;
+    private final int divisor;
     private int [] dividendDigits;
-    private List<Integer> result = new ArrayList<>();
-    private List<Integer> quotient = new ArrayList<>();
-    private List<Integer> spaces = new ArrayList<>();
+    private final List<Integer> result = new ArrayList<>();
+    private final List<Integer> quotient = new ArrayList<>();
+    private final List<Integer> spaces = new ArrayList<>();
 
     public Calculator(int dividend, int divisor){
         this.dividend = dividend;
