@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -185,7 +186,7 @@ class CalculatorTest {
         calculator.calculate();
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1);
-        List<Integer> spaces = Arrays.asList(1);
+        List<Integer> spaces = Collections.singletonList(1);
 
         assertEquals(spaces, calculator.getSpaces());
     }
