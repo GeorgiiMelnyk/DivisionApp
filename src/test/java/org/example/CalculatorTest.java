@@ -180,6 +180,7 @@ class CalculatorTest {
         int dividend = 10000;
         int divisor = 10;
 
+
         Calculator calculator = new Calculator(dividend, divisor);
         calculator.calculate();
         calculator.getSpaces().remove(calculator.getSpaces().size() - 1); // remove two last elements which are redundant
