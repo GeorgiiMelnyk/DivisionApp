@@ -27,7 +27,7 @@ public class Main {
             Formatting formatting = new Formatting(calculator);
 
             System.out.print("\n");
-            formatting.print(formatting.format());
+            formatting.print();
             System.out.print("\n".repeat(2));
         }
     }

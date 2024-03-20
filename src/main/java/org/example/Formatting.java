@@ -74,8 +74,8 @@ public class Formatting {
         return resultString.toString();
     }
 
-    public void print(String string){
-        System.out.print(string);
+    public void print(){
+        System.out.print(this.format());
     }
 
     private int getLength(int number){
